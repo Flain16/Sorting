@@ -7,6 +7,6 @@ public class Sorting {
     }
 
     public Sorting(){
-
+        int b = 0;
     }
 }
