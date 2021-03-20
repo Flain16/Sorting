@@ -1,5 +1,8 @@
 package old;
 
+import utils.CUtil;
+import utils.List;
+
 public class Sorter {
 
 	int[] standardArray, array2, array3, array4;

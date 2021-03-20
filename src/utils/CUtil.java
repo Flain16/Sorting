@@ -1,8 +1,6 @@
-package old;
+package utils;
 
 import java.util.Scanner;
-import Utils.List;
-
 public class CUtil {
 
     public static void cn(String klasse, String text) {
@@ -40,6 +38,9 @@ public class CUtil {
 		}
 		System.out.println("");
 		for(int b = 0; b < array.length; b++){
+			if(b > 10) {
+				System.out.print(" ");
+			}
 			if(array[b] < 10){
 				System.out.print("  " + array[b]);
 			}
@@ -79,11 +80,19 @@ public class CUtil {
 		}
 		System.out.println("");
 	}
-	
+
 	public int cScannerInt() {
 		Scanner modeSc = new Scanner(System.in);
     	int number = modeSc.nextInt();
     	modeSc.close();
     	return  number;
+    }
+
+    public static int[] generateTable(int length, int maximun){
+    	int[] table = new int[length];
+    	for(int i = 0; i < table.length; i++){
+    		table[i] = (int) (Math.random() * maximun);
+		}
+    	return table;
 	}
 }
