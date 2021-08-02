@@ -1,5 +1,6 @@
 package gui;
 
+import algos.BubbleSort;
 import main.Sorting;
 import utils.CUtil;
 import utils.List;
@@ -16,9 +17,13 @@ public class SortingGui extends JFrame {
     private JButton genTab = new JButton();
     private JButton showTab = new JButton();
     private JCheckBox selectDebug = new JCheckBox();
+    private JButton bubble = new JButton();
+    private JCheckBox debug = new JCheckBox();
+    private  JLabel tDebug = new JLabel();
+    private BubbleSort b = new BubbleSort();
 
     public SortingGui(){
-        //Making the Window
+        //creating the Window
         super();
         int frameWidth = 490;
         int frameHeight = 380;
@@ -55,9 +60,23 @@ public class SortingGui extends JFrame {
         showTab.setText("Print table");
         showTab.addActionListener(e -> showTabPressed());
         jp.add(showTab);
-        selectDebug.setBounds(getWidth()-10, 10,10,10);
+        selectDebug.setBounds(getWidth()-85, 10,20,20);
+        selectDebug.setMargin(new Insets(2,2,2,2));
         selectDebug.setText("Debug");
         jp.add(selectDebug);
+        tDebug.setBounds(getWidth() -65, 10, 100,20);
+        tDebug.setText("Debug");
+        jp.add(tDebug);
+        bubble.setBounds(10, showTab.getY() + showTab.getHeight() + 10, getWidth() -350, getHeight() - 330);
+        bubble.setMargin(new Insets(2,2,2,2));
+        bubble.setText("Bubblesort run");
+        bubble.addActionListener(e -> bubblePressed());
+        jp.add(bubble);
+        debug.setBounds(getWidth() - 20,10,10,10);
+        debug.setMargin(new Insets(2,2,2,2));
+        debug.addActionListener(e -> checkboxPressed());
+        jp.add(debug);
+
 
         //adding JPanel to the Window
         add(jp);
@@ -85,8 +104,22 @@ public class SortingGui extends JFrame {
             System.err.println("Create table");
             JOptionPane.showMessageDialog(null,"Create table","Error Message", JOptionPane.ERROR_MESSAGE);
         }else {
-            CUtil.table(table);
-            JOptionPane.showTable(table);
+            if(checkboxPressed()){
+                CUtil.table(table);
+            }
+            JOptionPane.showTable(table, "Table");
         }
+    }
+
+    private void bubblePressed(){
+        int[] re;
+        re = b.bubbleSort(sorting.getUnsorted(), checkboxPressed());
+        CUtil.n("finished in " + b.getTime() + "seconds");
+        CUtil.n("Table Bubblesort:");
+        CUtil.table(re);
+    }
+
+    private boolean checkboxPressed(){
+        return selectDebug.isSelected();
     }
 }

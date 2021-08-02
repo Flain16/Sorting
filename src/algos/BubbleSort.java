@@ -7,7 +7,11 @@ public class BubbleSort {
     private long time = 0, startTime = 0;
     private int[] table;
 
-    public BubbleSort(int[] array){
+    public BubbleSort(){
+
+    }
+
+    public int[] bubbleSort(int[] array, boolean debug){
         setStartTime();
         boolean moved = false;
         boolean running = true;
@@ -19,7 +23,9 @@ public class BubbleSort {
                     int b = array[i];
                     array[i] = array[i - 1];
                     array[i - 1] = b;
-                    CUtil.table(array);
+                    if(debug){
+                        CUtil.table(array);
+                    }
                 }
             }
             if(!moved){
@@ -28,6 +34,7 @@ public class BubbleSort {
         }
         table = array;
         setTime();
+        return table;
     }
 
     public void setStartTime(){
