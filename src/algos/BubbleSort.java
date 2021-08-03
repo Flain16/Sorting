@@ -13,6 +13,9 @@ public class BubbleSort {
 
     public int[] bubbleSort(int[] array, boolean debug){
         setStartTime();
+        if(debug){
+            CUtil.n("BubbleSort started");
+        }
         boolean moved = false;
         boolean running = true;
         while(running){
